@@ -19,7 +19,7 @@ $(function() {
 
   $("#nameform").submit(function(e){
     e.preventDefault()
-    $("#nameform button").text("Fetched : My name is "+me.getFullName())
+    $("#nameform button").text("Fetched | My name is "+me.getFullName())
   })
 
 })  
