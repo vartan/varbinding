@@ -7,7 +7,8 @@ document.body.onload = function() {
     firstName:  VarBinding()        .bind(getAllElementsWithAttributes({attribute:"bind",value:"firstName"})),
     middleName: VarBinding()        .bind(getAllElementsWithAttributes({attribute:"bind",value:"middleName"})),
     lastName:   VarBinding("Vartan").bind(getAllElementsWithAttributes({attribute:"bind",value:"lastName"})),
-    age:        VarBinding(20)      .bind(getAllElementsWithAttributes({attribute:"bind",value:"age"})),
+                                                                                                        // bind function:
+    age:        VarBinding(20)      .bind(getAllElementsWithAttributes({attribute:"bind",value:"age"})).bind(testBoundEvents),
     getFullName: function() {
       var first, middle, last,
       nameParts = []
@@ -74,4 +75,10 @@ function getAllElementsWithAttributes(options)
     }
   }
   return matchingElements;
+}
+
+function testBoundEvents(options) {
+  var ageDisplay = getAllElementsWithAttributes({tag:"strong",attribute:"bind",value:"age"})[0]
+  ageDisplay.style.fontSize = (1+options.newValue/100*2-0.4)+"em"
+  console.log(options.oldValue + " -> "+options.newValue)
 }

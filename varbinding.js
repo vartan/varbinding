@@ -6,8 +6,8 @@ var VarBinding = function(startingValue){
     
     var _value = startingValue // Actual value of variable
     var _thisProperty          // Reference to this object
-    var _bound = []
-    
+    var _boundElements = []
+    var _boundEvents = []
     function isEditable(element) {
       return element.tagName == "INPUT" || element.tagName == "TEXTAREA"
     }
@@ -41,8 +41,12 @@ var VarBinding = function(startingValue){
           }
           return _thisProperty
         }
-        // append element to _bound list
-        _bound.push(element)
+        if(element instanceof Function) {
+          _boundEvents.push(element)
+          return _thisProperty
+        }
+        // append element to _boundElements list
+        _boundElements.push(element)
 
         // if a value already exists for _value, apply it to the element
         _thisProperty._apply(element)
@@ -73,11 +77,15 @@ var VarBinding = function(startingValue){
       set: function(val) {
         if(!_thisProperty) _thisProperty = this
         if(val != _value) {
+          var oldValue = _value
           _value = val
           // apply async as to not freeze the browser
           setTimeout(function() {
-            for(var i = 0; i < _bound.length; i++) {
-              _thisProperty._apply(_bound[i])
+            for(var i = 0; i < _boundEvents.length; i++) {
+              _boundEvents[i]({property:_thisProperty,oldValue:oldValue, newValue:val})
+            }
+            for(var i = 0; i < _boundElements.length; i++) {
+              _thisProperty._apply(_boundElements[i])
             }
 
           }, 0);
