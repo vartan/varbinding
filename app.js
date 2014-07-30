@@ -19,7 +19,7 @@ $(function() {
 
   $("#nameform").submit(function(e){
     e.preventDefault()
-    $("#nameform button").text("Fetched: My name is: "+me.getFullName())
+    $("#nameform button").text("Fetched : My name is "+me.getFullName())
   })
 
 })  
@@ -30,9 +30,6 @@ function showCode() {
     $.ajax({url:fileName}).done(function(content) {
       element.textContent = content
       hljs.highlightBlock(element)
-    }).fail(function(e) {
-      console.log(this);
-      console.log(e)
     })
   })
 }
