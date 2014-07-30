@@ -42,12 +42,12 @@ var VarBinding = function(startingValue){
           }
           // bind text changed events
           if("oninput" in window) {
-            element.oninput    = _thisProperty.onValueChanged
+            element.addEventListener('input',    _thisProperty.onValueChanged, false);
           } else {
-            element.onkeypress = _thisProperty.onValueChanged
-            element.onchange   = _thisProperty.onValueChanged
-            element.onpaste    = _thisProperty.onValueChanged
-            element.oncut      = _thisProperty.onValueChanged
+            element.addEventListener('keyup',    _thisProperty.onValueChanged, false)
+            element.addEventListener('change',   _thisProperty.onValueChanged, false)
+            element.addEventListener('onpaste',  _thisProperty.onValueChanged, false)
+            element.addEventListener('oncut',    _thisProperty.onValueChanged, false)
           }
         }
         return _thisProperty
@@ -100,7 +100,6 @@ var VarBinding = function(startingValue){
        */
       onValueChanged:function(event) {
         _thisProperty.set(event.target.value)
-        return _thisProperty
       }
     }
   }(startingValue)
