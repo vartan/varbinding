@@ -1,3 +1,4 @@
+"use strict";
 document.body.onload = function() {
   showCode()
 
