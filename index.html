@@ -1,0 +1,70 @@
+<html>
+<head>
+  <title>
+    VarBindings v0.0.0
+  </title>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+</head>
+<body class="container">
+<h1>VarBindings 0.0.0 <small>A proof of concept</small></h1>
+  <h2>The concept</h2>
+  <p>
+    This is a proof of concept for an event-based two-way-binding. This system is very simple:
+    <ol>
+      <li><samp>var myBoundVariable = VarBinding()</samp></li>
+      <li><samp>myBoundVariable.set("This is my value")</samp></li>
+      <li><samp>var myElement = document.getElementByID("myElementID")</samp></li>
+      <li><samp>myBoundVariable.bind(myElement)</samp></li>
+    </ol>
+    or more succinctly, <code>var myBoundVariable = VarBinding("This is my value").bind(document.getElementById("myElementID"))</code>
+  </p>
+  <h2>Demo:</h2>
+  <div class="text-center well lead"> 
+    Hello,
+    <strong bind="firstName"></strong> 
+    <strong bind="middleName"></strong>
+    <strong bind="lastName"></strong>
+  </div>
+  <div class="col-sm-2">&nbsp;</div>
+  <form id="nameform" class="form-horizontal col-sm-8 center jumbotron">
+    <div class="form-group">
+      <label for="myFirstName">First Name:</label>
+      <!--IMPORTANT: bind="firstName"                       Value defined in input-->
+      <input bind="firstName" id="myFirstName" value="Michael" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="myMiddleName">Middle Name:</label>
+      <!--IMPORTANT: bind="middleName"        Value blank by default-->
+      <input bind="middleName" id="myMiddleName" class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="myLastName">Last Name:</label>
+      <!--IMPORTANT: bind="lastName"                Value defined in javascript-->
+      <input bind="lastName" id="myLastName" value="Vartan" class="form-control"/> 
+    </div>
+    <div class="form-group">
+      <button id="whatismyname" type="submit" class="btn btn-primary">Can you fetch my name programatically?</button>
+    </div>
+  </form>
+  <div class="col-sm-2">&nbsp;</div>
+    <div class="clearfix"></div>
+  <h2>Code:</h2>
+  <strong>index.html</strong>
+  <pre><code src="index.html"></code></pre>
+  <strong>app.js</strong>
+  <pre><code src="app.js"></code></pre>
+  <strong>varbindings.js</strong>
+  <pre><code src="varbindings.js"></code></pre>
+  <!--JQuery for my quick bindings -->
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <!--Syntax highlighting for your viewing pleasure-->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script>
+  <!--Variable Bindings-->
+  <script src="varbindings.js"></script>
+  <!--Sets up the demo-->
+  <script src="app.js"></script>
+</body>
+</html>
+
