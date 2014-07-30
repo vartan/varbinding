@@ -78,7 +78,13 @@ function getAllElementsWithAttributes(options)
 }
 
 function testBoundEvents(options) {
-  var ageDisplay = getAllElementsWithAttributes({tag:"strong",attribute:"bind",value:"age"})[0]
-  ageDisplay.style.fontSize = (1+options.newValue/100*2-0.4)+"em"
+  var ageDisplays = options.property.getresizeAgeDisplayss()
   console.log(options.oldValue + " -> "+options.newValue)
+
+  for(var i = 0; i < ageDisplays.length; i++) {
+    var ageDisplay = ageDisplays[i]
+    if(ageDisplay.tagName == "STRONG") {
+      ageDisplay.style.fontSize = (1+options.newValue/100*2-0.4)+"em"
+    }
+  }
 }

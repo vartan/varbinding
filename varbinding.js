@@ -114,6 +114,9 @@ var VarBinding = function(startingValue){
         }
         return _thisProperty
       },
+      getBoundElements: function() {
+        return _boundElements
+      },
       /**
        * On value changed
        * @param  {event}      event oninput/other event
