@@ -30,6 +30,9 @@ function showCode() {
     $.ajax({url:fileName}).done(function(content) {
       element.textContent = content
       hljs.highlightBlock(element)
+    }).fail(function(e) {
+      console.log(this);
+      console.log(e)
     })
   })
 }
