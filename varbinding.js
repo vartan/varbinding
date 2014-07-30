@@ -105,7 +105,7 @@ var VarBinding = function(startingValue){
        */
       _apply: function(element) {
         if(_value != undefined) {
-          if(isEditable(element)) {
+          if(element.value) { // check if element has value attribute
             if(element.value != _value) 
               element.value = _value; 
           } else {
