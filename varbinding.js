@@ -88,7 +88,7 @@ var VarBinding = function(startingValue){
               element.value = _value; 
           } else {
             if(element.innerHTML != _value) 
-              element.innerHTML = _value
+              element.textContent = _value
           }
         }
         return _thisProperty
