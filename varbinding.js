@@ -1,6 +1,7 @@
 "use strict";
 
-var VarBinding = function(startingValue){return function(startingValue) {
+var VarBinding = function(startingValue){
+  return function(startingValue) {
     //Local Variables:
     
     var _value = startingValue // Actual value of variable
@@ -60,9 +61,13 @@ var VarBinding = function(startingValue){return function(startingValue) {
         if(!_thisProperty) _thisProperty = this
         if(val != _value) {
           _value = val
-          for(var i = 0; i < _bound.length; i++) {
-            this._apply(_bound[i])
-          }
+          // apply async as to not freeze the browser
+          setTimeout(function() {
+            for(var i = 0; i < _bound.length; i++) {
+              _thisProperty._apply(_bound[i])
+            }
+
+          }, 0);
         }
         return _thisProperty
       },
@@ -98,4 +103,5 @@ var VarBinding = function(startingValue){return function(startingValue) {
         return _thisProperty
       }
     }
-  }(startingValue)};
+  }(startingValue)
+};
