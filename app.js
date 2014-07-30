@@ -28,7 +28,7 @@ function showCode() {
   $("code[src]").each(function(index,element) {
     var fileName = element.getAttribute("src")
     $.ajax({url:fileName}).done(function(content) {
-      element.textContent = content
+      $(element).text(content)
       hljs.highlightBlock(element)
     }).fail(function(e) {
       console.log(this);
