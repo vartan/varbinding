@@ -7,9 +7,22 @@ var VarBinding = function(startingValue){
     var _value = startingValue // Actual value of variable
     var _thisProperty          // Reference to this object
     var _bound = []
+    
     function isEditable(element) {
       return element.tagName == "INPUT" || element.tagName == "TEXTAREA"
     }
+    function addListener(element, eventName, handler) {
+      if (element.addEventListener) {
+        element.addEventListener(eventName, handler, false);
+      }
+      else if (element.attachEvent) {
+        element.attachEvent('on' + eventName, handler);
+      }
+      else {
+        element['on' + eventName] = handler;
+      }
+    }
+
     return {
       /**
        * Binds DOM element(s) to the variable
@@ -42,12 +55,12 @@ var VarBinding = function(startingValue){
           }
           // bind text changed events
           if("oninput" in window) {
-            element.addEventListener('input',    _thisProperty.onValueChanged, false);
+            addListener(element,'input',    _thisProperty.onValueChanged);
           } else {
-            element.addEventListener('keyup',    _thisProperty.onValueChanged, false)
-            element.addEventListener('change',   _thisProperty.onValueChanged, false)
-            element.addEventListener('onpaste',  _thisProperty.onValueChanged, false)
-            element.addEventListener('oncut',    _thisProperty.onValueChanged, false)
+            addListener(element,'keyup',    _thisProperty.onValueChanged)
+            addListener(element,'change',   _thisProperty.onValueChanged)
+            addListener(element,'onpaste',  _thisProperty.onValueChanged)
+            addListener(element,'oncut',    _thisProperty.onValueChanged)
           }
         }
         return _thisProperty
