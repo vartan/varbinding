@@ -1,4 +1,3 @@
-"use strict";
 document.body.onload = function() {
   showCode()
 
@@ -7,6 +6,7 @@ document.body.onload = function() {
     firstName:  VarBinding()        .bind(getAllElementsWithAttributes({attribute:"bind",value:"firstName"})),
     middleName: VarBinding()        .bind(getAllElementsWithAttributes({attribute:"bind",value:"middleName"})),
     lastName:   VarBinding("Vartan").bind(getAllElementsWithAttributes({attribute:"bind",value:"lastName"})),
+    age:        VarBinding(20)      .bind(getAllElementsWithAttributes({attribute:"bind",value:"age"})),
     getFullName: function() {
       var first, middle, last,
       nameParts = []
@@ -19,7 +19,7 @@ document.body.onload = function() {
 
   document.getElementById("nameform").onsubmit = function(e){
     e.preventDefault()
-    document.getElementById("whatismyname").textContent = "Fetched | My name is "+me.getFullName()
+    document.getElementById("whatismyname").textContent = "Fetched | My name is "+me.getFullName()+" and I am "+me.age.get()+" years old."
   }
 
 } 

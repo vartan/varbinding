@@ -25,7 +25,7 @@
     Hello,
     <strong bind="firstName">Place</strong> 
     <strong bind="middleName"></strong>
-    <strong bind="lastName">Text</strong>
+    <strong bind="lastName">Text</strong>, I heard you were <strong bind="age">1337</strong> years old
   </div>
   <div class="col-sm-2">&nbsp;</div>
   <form id="nameform" class="form-horizontal col-sm-8 center jumbotron">
@@ -41,8 +41,13 @@
     </div>
     <div class="form-group">
       <label for="myLastName">Last Name:</label>
-      <!--IMPORTANT: bind="lastName"                Value defined in javascript-->
-      <input bind="lastName" id="myLastName" value="Vartan" class="form-control"/> 
+      <!--IMPORTANT: bind="lastName" Value defined in javascript-->
+      <input bind="lastName" id="myLastName" class="form-control"/> 
+    </div>
+    <div class="form-group">
+      <label for="myAge">Age:</label>
+      <!--IMPORTANT: bind="age"                Value defined in javascript-->
+      <input bind="age" id="myAge" type="number" class="form-control" min="0" max="100"/> 
     </div>
     <div class="form-group">
       <button id="whatismyname" type="submit" class="btn btn-primary">Can you fetch my name without referencing DOM?</button>
