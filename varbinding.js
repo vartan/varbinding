@@ -24,7 +24,7 @@ var VarBinding = function(startingValue){
         // check if array
         if(element instanceof Array) {
           for(var i = 0; i < element.length; i++) {
-            this.bind(element[i])   
+            _thisProperty.bind(element[i])   
           }
           return _thisProperty
         }
@@ -32,7 +32,7 @@ var VarBinding = function(startingValue){
         _bound.push(element)
 
         // if a value already exists for _value, apply it to the element
-        this._apply(element)
+        _thisProperty._apply(element)
 
         if(isEditable(element)) {
           if(_value == undefined && element.value != undefined && element.value.length > 0) {
@@ -42,12 +42,12 @@ var VarBinding = function(startingValue){
           }
           // bind text changed events
           if("oninput" in window) {
-            element.oninput    = this.onValueChanged
+            element.oninput    = _thisProperty.onValueChanged
           } else {
-            element.onkeypress = this.onValueChanged
-            element.onchange   = this.onValueChanged
-            element.onpaste    = this.onValueChanged
-            element.oncut      = this.onValueChanged
+            element.onkeypress = _thisProperty.onValueChanged
+            element.onchange   = _thisProperty.onValueChanged
+            element.onpaste    = _thisProperty.onValueChanged
+            element.oncut      = _thisProperty.onValueChanged
           }
         }
         return _thisProperty
