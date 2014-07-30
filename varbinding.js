@@ -82,7 +82,6 @@ var VarBinding = function(startingValue){
        * @return {VarBinding}         Returns this for chaining purposes.
        */
       _apply: function(element) {
-        console.log(element);console.log(" is being updated")
         if(_value != undefined) {
           if(isEditable(element)) {
             if(element.value != _value) 
