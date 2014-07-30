@@ -41,7 +41,8 @@ var VarBinding = function(startingValue){
           }
           return _thisProperty
         }
-        if(element instanceof Function) {
+        // check if Function
+        if(!!(element && element.constructor && element.call && element.apply)) {
           _boundEvents.push(element)
           return _thisProperty
         }

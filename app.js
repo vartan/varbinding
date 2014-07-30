@@ -8,7 +8,7 @@ document.body.onload = function() {
     middleName: VarBinding()        .bind(getAllElementsWithAttributes({attribute:"bind",value:"middleName"})),
     lastName:   VarBinding("Vartan").bind(getAllElementsWithAttributes({attribute:"bind",value:"lastName"})),
                                                                                                         // bind function:
-    age:        VarBinding(20)      .bind(getAllElementsWithAttributes({attribute:"bind",value:"age"})).bind(testBoundEvents),
+    age:        VarBinding(20)      .bind(getAllElementsWithAttributes({attribute:"bind",value:"age"})).bind(resizeAgeDisplays),
     getFullName: function() {
       var first, middle, last,
       nameParts = []
@@ -77,7 +77,7 @@ function getAllElementsWithAttributes(options)
   return matchingElements;
 }
 
-function testBoundEvents(options) {
+function resizeAgeDisplays(options) {
   var ageDisplays = options.property.getBoundElements()
   console.log(options.oldValue + " -> "+options.newValue)
 
