@@ -64,11 +64,11 @@ function getAllElementsWithAttributes(options)
     var attribute = options;
   else
     var attribute = options.attribute
-  var allElements = document.getElementsByTagName('*');
+  var allElements = document.getElementsByTagName(options.tag || '*');
   for (var i = 0, n = allElements.length; i < n; i++)
   {
 
-    if (allElements[i].getAttribute(attribute) && (!options.value || options.value == allElements[i].getAttribute(attribute)) && (!options.tag || options.tag.toUpperCase() == allElements[i].tagName))
+    if (allElements[i].getAttribute(attribute) && (!options.value || options.value == allElements[i].getAttribute(attribute)))
     {
       // Element exists with attribute. Add to array.
       matchingElements.push(allElements[i]);
