@@ -78,7 +78,7 @@ function getAllElementsWithAttributes(options)
 }
 
 function testBoundEvents(options) {
-  var ageDisplays = options.property.getresizeAgeDisplays()
+  var ageDisplays = options.property.getBoundElements()
   console.log(options.oldValue + " -> "+options.newValue)
 
   for(var i = 0; i < ageDisplays.length; i++) {
