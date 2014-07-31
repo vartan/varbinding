@@ -81,7 +81,7 @@ var VarBinding = function(startingValue){
           var oldValue = _value
           _value = val
           // apply async as to not freeze the browser
-          setTimeout(function() {
+          requestAnimationFrame(function() {
             for(var i = 0; i < _boundEvents.length; i++) {
               _boundEvents[i]({property:_thisProperty,oldValue:oldValue, newValue:val})
             }
@@ -89,7 +89,7 @@ var VarBinding = function(startingValue){
               _thisProperty._apply(_boundElements[i])
             }
 
-          }, 0);
+          });
         }
         return _thisProperty
       },
@@ -105,7 +105,7 @@ var VarBinding = function(startingValue){
        */
       _apply: function(element) {
         if(_value != undefined) {
-          if(element.value) { // check if element has value attribute
+          if(isEditable(element)) { // check if element has value attribute
             if(element.value != _value) 
               element.value = _value; 
           } else {
